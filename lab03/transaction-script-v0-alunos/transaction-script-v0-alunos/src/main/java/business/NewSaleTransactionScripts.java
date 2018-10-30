@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import dataaccess.CustomerRowDataGateway;
 import dataaccess.SaleRowDataGateway;
+
 import java.util.Date;
 
 public class NewSaleTransactionScripts {
@@ -20,11 +21,6 @@ public class NewSaleTransactionScripts {
 			newSale.insert();
 			return newSale.getId();
 		}
-		
 
 
-
-	public void addProductToSale(int saleId, int productCode, int qty) {
-
-	}
 }

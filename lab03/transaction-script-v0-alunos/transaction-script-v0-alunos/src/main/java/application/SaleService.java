@@ -1,6 +1,7 @@
 package application;
 
 import facade.exceptions.ApplicationException;
+import business.addProductToSaleTransactionsScripts;
 import business.NewSaleTransactionScripts;
 
 /**
@@ -22,12 +23,15 @@ public enum SaleService {
 	/**
 	 * Add a new sale to a customer with a giving VAT number.
 	 * 
-	 * @param vat The VAT number of the customer purchasing goods.
+	 * @param vat
+	 *            The VAT number of the customer purchasing goods.
 	 * @return The sale identification. The id must be used when adding products to
 	 *         the sale.
-	 * @throws ApplicationException In case the sale could not be created.
+	 * @throws ApplicationException
+	 *             In case the sale could not be created.
 	 */
 	NewSaleTransactionScripts saleTS;
+	addProductToSaleTransactionsScripts prodSale;
 
 	public int newSale(int vat) throws ApplicationException {
 		saleTS = new NewSaleTransactionScripts();
@@ -38,24 +42,29 @@ public enum SaleService {
 	/**
 	 * Add a product to a given sale.
 	 * 
-	 * @param saleId      The id of the sale to add the product to.
-	 * @param productCode The code of the product to be added to the sale.
-	 * @param qty         The quantity being purchased.
-	 * @throws ApplicationException In case the product could not be added to the
-	 *                              sale. See lower level exception for detailed
-	 *                              information.
+	 * @param saleId
+	 *            The id of the sale to add the product to.
+	 * @param productCode
+	 *            The code of the product to be added to the sale.
+	 * @param qty
+	 *            The quantity being purchased.
+	 * @throws ApplicationException
+	 *             In case the product could not be added to the sale. See lower
+	 *             level exception for detailed information.
 	 */
-	public void addProductToSale(int saleId, int productCode, int qty) throws ApplicationException {
-		saleTS.addProductToSale(saleId, productCode, qty);
+	public void addProductToSale(int saleId, int productCode, double qty) throws ApplicationException {
+		// prodSale = new addProductToSaleTransactionsScripts();
+		prodSale.addProductToSale(saleId, productCode, qty);
 	}
 
 	/**
-	 * @param saleId The id of the sale the obtain the discount total
+	 * @param saleId
+	 *            The id of the sale the obtain the discount total
 	 * @return The total discount for a sale with id saledId.
-	 * @throws ApplicationException In case the sale does not exists.
+	 * @throws ApplicationException
+	 *             In case the sale does not exists.
 	 */
 	public double getSaleDiscount(int saleId) throws ApplicationException {
-		// TODO: complete!
 		return 0;
 	}
 }
