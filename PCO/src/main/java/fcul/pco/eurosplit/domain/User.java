@@ -1,6 +1,6 @@
 package fcul.pco.eurosplit.domain;
 
-import java.lang.reflect.Array;
+
 
 public class User {
 	private String email;
@@ -20,12 +20,16 @@ public class User {
 	public String toString() {
 		return email + "@" + nome;
 	}
-	public void fromString(String s) {
-		StringBuilder sb = new StringBuilder(s);
-		String[] arrayUserString = new String[2];
-		arrayUserString[0]= sb.toString().split("@")[0];
-		System.out.println(sb.toString().split("@")[0]); 
+	public User fromString(String s) {
 		
+		StringBuilder sb = new StringBuilder(s);
+
+		String nome = sb.toString().split("@")[0]; 
+		String email = sb.toString().split("@")[1];
+		
+		User usuario = new User(email,nome);
+		
+		return usuario;
 	}
 	
 }
