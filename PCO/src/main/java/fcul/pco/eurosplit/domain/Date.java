@@ -23,7 +23,7 @@ public class Date {
 		
 	}
 	/*
-	 * E criado um objecto com o valor deste formato:
+	 * Eh criado um objecto com o valor deste formato:
 	 * "2018-11-10T12:02:35.876" para saber o valor atual da 
 	 * data ao qual foi criado.
 	 * Ensures: Devolve em um objecto Date. 
@@ -49,8 +49,8 @@ public class Date {
 	}
 	
 	/*
-	 * Recebe uma String s que é uma Data
-	 * com o formato igual ao método toString()
+	 * Recebe uma String s que ï¿½ uma Data
+	 * com o formato igual ao mï¿½todo toString()
 	 * 
 	 * requires: s tem de ser uma String em formato
 	 * "year-mes-horas-minutos"

@@ -4,10 +4,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Expense {
-	private String Despesa;
+	private String Despesa; 
 	private int Despesavalor;
 	private User paidBy;
-	private Date date;
+	private Date date; 
 	private ArrayList<User> paidfor;
 	
 	public Expense(String d, int DValue,User paid,Date dt, ArrayList<User> paidfor){
@@ -31,17 +31,18 @@ public class Expense {
 
 	public String toString() {
 		
-		return Despesa + "@" + Despesavalor+ "@" 
-						 + paidBy.getName() + "@"
-						 + paidBy.getEmail() + "@"  
+		return Despesa + "-" + Despesavalor+ "-" 
+						 + paidBy.getName() + "-"
+						 + paidBy.getEmail() + "-"  
 						 + "Date" + date.toString();
 	}
 	
 	
 	/*
 	 * Este metodo recebe uma String s com o seguinte formato:
-	 * "Despesa@ValorInteiroDespesa@Username@email@
+	 * A determinar
 	 */
+	
 	public Expense fromString(String s) throws ParseException {
 		StringBuilder sb = new StringBuilder(s);
 		
@@ -63,6 +64,4 @@ public class Expense {
 		Expense exp = new Expense(Despesa,Integer.parseInt(DespesaValor),user, finalDate);
 		return exp;
 	}
-	
-	
 }
