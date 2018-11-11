@@ -1,6 +1,5 @@
 package fcul.pco.eurosplit.domain;
 
-
 /*
  * Esta class representa uma Usuário composto
  * pelo seu Nome e Email

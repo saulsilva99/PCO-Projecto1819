@@ -53,20 +53,10 @@ public class UserCatalog {
 	}
 
 	/*
-	 * Obter todos os usuários que existem. Ensures: Devolve um Map<String,User> em
-	 * que a a key eh uma String referente a um email de um User, e um value com uma
-	 * instancia de User.
-	 */
-	public Map<String, User> getUsers() {
-		return StorageUsers;
-	}
-
-	/*
 	 * chama a camada de Persistência que também tem o UserCatalog e o metodo save()
 	 */
 	public void save() throws IOException {
 		fcul.pco.eurosplit.persistence.UserCatalog.save(StorageUsers);
-
 	}
 
 	/*
