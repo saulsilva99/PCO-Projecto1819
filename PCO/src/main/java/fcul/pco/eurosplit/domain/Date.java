@@ -25,7 +25,6 @@ public class Date {
 		this.dia=d;
 		this.horas=h;
 		this.minutos=min;
-		
 	}
 	/*
 	 * Eh criado um objecto com o valor deste formato:
@@ -54,20 +53,20 @@ public class Date {
 	}
 	
 	/*
-	 * Recebe uma String s que � uma Data
-	 * com o formato igual ao m�todo toString()
+	 * Recebe uma String s que eh uma Data
+	 * com o formato igual ao metodo toString()
 	 * 
 	 * requires: s tem de ser uma String em formato
 	 * "year-mes-horas-minutos"
 	 * Ensures: Devolve um objecto em forma de data
 	 */
 	public Date fromString(String s) {
-		StringBuilder sb = new StringBuilder(s);
-		int year = Integer.parseInt(sb.toString().split("-")[0]);
-		int month = Integer.parseInt(sb.toString().split("-")[1]);
-		int day = Integer.parseInt(sb.toString().split("-")[2]);
-		int hours = Integer.parseInt(sb.toString().split("-")[3]);
-		int minuts = Integer.parseInt(sb.toString().split("-")[4]);
+		
+		int year = Integer.parseInt(s.split("-")[0]);
+		int month = Integer.parseInt(s.split("-")[1]);
+		int day = Integer.parseInt(s.split("-")[2]);
+		int hours = Integer.parseInt(s.split("-")[3]);
+		int minuts = Integer.parseInt(s.split("-")[4]);
 		
 		Date dt = new Date(year,month,day,hours,minuts);
 		return dt;
