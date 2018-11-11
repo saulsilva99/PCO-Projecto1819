@@ -1,31 +1,69 @@
 package fcul.pco.eurosplit.domain;
 
 
-
+/*
+ * Esta class representa uma Usuário composto
+ * pelo seu Nome e Email
+ * @author Saul Silva e João Paiva
+ */
 public class User {
 	private String email;
 	private String nome;
 	
+	/*
+	 * Inicializa um constructor vazio para
+	 * ser possivel instanciar um objecto User
+	 */
 	public User() {
 		
 	}
+	
+	/*
+	 * Cria uma Instancia de User com dois params.
+	 * @param nome. Nome do usuario em formato String.
+	 * @param email. Email do usuario em formato String.
+	 */
 	public User(String nome, String email) {
 		this.email = email;
 		this.nome = nome;
 	} 
+	
+	/*
+	 * Este metodo vai buscar o nome do User.
+	 * Requires: A instancia user tem sido inicializa 
+	 * com o nome e email.
+	 * Ensures: Devolve o nome da Instancia User.
+	 */
 	public String getName() {
 		return nome;
 	}
+	
+	
+	/*
+	 * Este metodo vai buscar o email do User.
+	 * Requires: A instancia user tem sido inicializa 
+	 * com o nome e email.
+	 * Ensures: Devolve o email da Instancia User.
+	 */
 	public String getEmail() {
 		return email;
 	}
 	
+	/*
+	 * Transforma em formato String a Instancia User
+	 * Requires: A instancia User ter sido inicializa com 
+	 * nome e email.
+	 * Ensures: Devolve uma string com o formato
+	 * => "<email>+<nome>";
+	 */
 	public String toString() {
 		return email + "+" + nome;
 	} 
 	
 	/*
-	 * 
+	 * Recebe uma String com o formato:
+	 * "Name: <nomeDaPessoa> Email: <emailDaPessoa>".
+	 *  Ensures: Devolve um objecto User
 	 */
 	public User fromString(String s) {
 		StringBuilder sb = new StringBuilder(s);

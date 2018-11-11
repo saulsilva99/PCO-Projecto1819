@@ -10,10 +10,15 @@ public class Date {
 	private int horas;
 	private int minutos;
 	
-	
-	public Date() {
-		
-	}
+	/*
+	 * Cria uma instancia de Date para usar como 
+	 * Data.
+	 * @param y. Eh um ano > 0 e inteiro
+	 * @param m. Eh um mes [1-12] e inteiro.
+	 * @param d. Eh um dia [1-31] e inteiro.
+	 * @param min. Minutos [0-60] e inteiro.
+	 * Requires: Respeitar os parametros acima referidos.
+	 */
 	public Date(int y, int m,int d, int h, int min) {
 		this.year=m;
 		this.mes=m;

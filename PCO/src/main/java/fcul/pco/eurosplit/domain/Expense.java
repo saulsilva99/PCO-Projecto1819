@@ -3,6 +3,9 @@ package fcul.pco.eurosplit.domain;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+/*
+ * 
+ */
 public class Expense {
 	private String Despesa; 
 	private int Despesavalor;
@@ -41,23 +44,27 @@ public class Expense {
 	/*
 	 * Este metodo recebe uma String s com o seguinte formato:
 	 * A determinar
+	 * @param s. Ser uma String que separa os valores por "-".
+	 * Requires: String s estar com o formato x.
+	 * Ensures: Devolve um objecto da propria class Expense.
 	 */
 	
 	public Expense fromString(String s) throws ParseException {
 		StringBuilder sb = new StringBuilder(s);
 		
 		//Valores para usar no objecto Expense
-		String Despesa	= sb.toString().split("@")[0];
-		String DespesaValor = sb.toString().split("@")[1];
-		String Username = sb.toString().split("@")[2];
-		String email = sb.toString().split("@")[3];
+		String Despesa	= sb.toString().split("-")[0];
+		String DespesaValor = sb.toString().split("-")[1];
+		
 		
 		//Valores para a data
-		String dataString = sb.toString().split("@")[4];
-		Date dtObj = new Date();
+		String dataString = sb.toString().split("-")[4];
+		Date dtObjt = fcul.pco.eurosplit.domain.Date.now();
+		Date finalDate = dtObjt.fromString(dataString);
 		
-		//Objectos
-		Date finalDate = dtObj.fromString(dataString);
+		//Criação da Instância User
+		String Username = sb.toString().split("-")[2];
+		String email = sb.toString().split("-")[3];
 		User user = new User(Username, email);
 
 
