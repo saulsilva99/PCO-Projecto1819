@@ -4,52 +4,75 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Objectivo da Class é armazenar Instancias
+ * de Usuarios.
+ * @author: Saul Silva e Joao Paiva
+ */
 public class UserCatalog {
-	private Map<String, User> StorageUsers; 
+	private Map<String, User> StorageUsers;
+
+	/*
+	 * Inicializa um constructor com a Instancia StorageUsers vazia.
+	 */
 	public UserCatalog() {
 		StorageUsers = new HashMap<String, User>();
 	}
 
+	/*
+	 * Adiciona um usuario para a instancia StorageUsers.
+	 * 
+	 * @param u. Eh uma instancia de User. Requires: Instancia de User deste genero
+	 * User(nome,email)
+	 */
 	public void addUser(User u) {
 		StorageUsers.put(u.getEmail(), u);
- 
 	}
 
+	/*
+	 * Descobrir se existe um usuario com determinado email.
+	 * 
+	 * @param id. Eh uma String de email. Requires: id ser um email valido. Ensures:
+	 * Devolve true se existir, caso constrário Falso.
+	 */
 	public boolean hasUserWithId(String id) {
-		try {
-			StorageUsers.get(id);
+		if (StorageUsers.get(id) != null) {
 			return true;
-		} catch (NullPointerException e) {
+		} else
 			return false;
-		}
 	}
 
-	public User getUserById(String id) {
-		try {
-			return StorageUsers.get(id);
-		} catch (NullPointerException e) {
-			System.out.println("Outilizador");
-		}
+	/*
+	 * Descobrir se existe um usuario com determinado email.
+	 * 
+	 * @param id. Eh uma String de email. Requires: id ser um email valido. Ensures:
+	 * Devolve o Objecto se o utilizador existe caso contrario levanta uma exceção
+	 */
+	public User getUserById(String id) throws NullPointerException {
 		return StorageUsers.get(id);
 	}
 
+	/*
+	 * Obter todos os usuários que existem. Ensures: Devolve um Map<String,User> em
+	 * que a a key eh uma String referente a um email de um User, e um value com uma
+	 * instancia de User.
+	 */
 	public Map<String, User> getUsers() {
 		return StorageUsers;
 	}
-	
+
 	/*
-	 * chama a camada de Persistência que também tem o UserCatalog
-	 * e o metodo save()
+	 * chama a camada de Persistência que também tem o UserCatalog e o metodo save()
 	 */
 	public void save() throws IOException {
 		fcul.pco.eurosplit.persistence.UserCatalog.save(StorageUsers);
-		
+
 	}
+
 	/*
-	 * Chamda a camada de Persistência que também tem o UserCatalog
-	 * e o método load
+	 * Chama a camada de Persistência que também tem o UserCatalog e o método load
 	 */
-	public void load() throws IOException{
-		fcul.pco.eurosplit.persistence.UserCatalog.load();
+	public void load() throws IOException {
+		StorageUsers = fcul.pco.eurosplit.persistence.UserCatalog.load();
 	}
 }

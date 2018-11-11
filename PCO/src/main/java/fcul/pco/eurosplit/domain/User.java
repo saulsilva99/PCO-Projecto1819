@@ -11,14 +11,6 @@ public class User {
 	private String nome;
 	
 	/*
-	 * Inicializa um constructor vazio para
-	 * ser possivel instanciar um objecto User
-	 */
-	public User() {
-		
-	}
-	
-	/*
 	 * Cria uma Instancia de User com dois params.
 	 * @param nome. Nome do usuario em formato String.
 	 * @param email. Email do usuario em formato String.
@@ -30,14 +22,13 @@ public class User {
 	
 	/*
 	 * Este metodo vai buscar o nome do User.
-	 * Requires: A instancia user tem sido inicializa 
-	 * com o nome e email.
-	 * Ensures: Devolve o nome da Instancia User.
+	 * Requires: A instancia user ter sido inicializada 
+	 * com nome e email.
+	 * Ensures: Devolve o nome da Instancia User em string.
 	 */
 	public String getName() {
 		return nome;
 	}
-	
 	
 	/*
 	 * Este metodo vai buscar o email do User.
@@ -66,9 +57,8 @@ public class User {
 	 *  Ensures: Devolve um objecto User
 	 */
 	public User fromString(String s) {
-		StringBuilder sb = new StringBuilder(s);
-		email = sb.toString().split(" ")[3];
-		nome = sb.toString().split(" ")[1];
+		email = s.split(" ")[3];
+		nome = s.split(" ")[1];
 		User usuario = new User(nome,email);
 		
 		return usuario;

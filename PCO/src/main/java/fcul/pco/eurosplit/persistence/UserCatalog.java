@@ -26,7 +26,6 @@ public class UserCatalog {
 			writeToFile.write("\n");
 		}
 		writeToFile.close();
-
 	}
 	/*
 	 * Objectivo de este metodo é ler um ficheiro users.dat
@@ -39,11 +38,14 @@ public class UserCatalog {
 		Map<String,User> mapUserFile = new HashMap<String, User>();
 		Scanner inputFromFile = new Scanner(new File("./users.dat"));
 		while(inputFromFile.hasNextLine()) {
-			User user = new User(); // tive de criar um constructor vazio é necessário?
+			
 			String linha = inputFromFile.nextLine();
 			
+			//transformações para 
+			String nome = linha.split(" ")[1];
+			String email = linha.split(" ")[3];
+			User user = new User(nome,email);
 			user.fromString(linha); // Ai está a razão do FromString()
-			System.out.println(user.toString());
 			mapUserFile.put(user.getEmail(),user);
 		}
 		return mapUserFile;

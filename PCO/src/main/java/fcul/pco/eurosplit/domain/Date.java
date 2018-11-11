@@ -47,7 +47,7 @@ public class Date {
 	
 	/*
 	 * Converte uma Data em String da forma:
-	 * "year-mes--dias-horas-minutos"
+	 * "year-mes-dias-horas-minutos"
 	 */
 	public String toString() {
 		return year + "-" + mes + "-" + dia + "-" + horas + "-" + minutos;
