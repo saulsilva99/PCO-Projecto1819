@@ -19,10 +19,8 @@ public class UserCatalog {
 	 */
 	public static void save(Map<String, User> users) throws IOException {
 		FileWriter writeToFile = new FileWriter(new File("./users.dat"));
-		for (Map.Entry<String, User> entry : users.entrySet()) {
-			writeToFile.write("Name: " + entry.getValue().getName().toString());
-			writeToFile.write(" Email: " + entry.getValue().getEmail().toString());
-			writeToFile.write("\n");
+		for (User u:  users.values()) {
+			writeToFile.write(u.toString() + "\n");
 		}
 		writeToFile.close();
 	}
@@ -40,15 +38,15 @@ public class UserCatalog {
 			
 			String linha = inputFromFile.nextLine();
 			
-			//transformações para 
-			String nome = linha.split(" ")[1];
-			String email = linha.split(" ")[3];
+			//transformações para usar no Ojecto User
+			String nome = linha.split("-")[1];
+			String email = linha.split("-")[0];
 			User user = new User(nome,email);
-			user.fromString(linha); // Ai está a razão do FromString()
+
+			user.fromString(user.toString()); // Ai está a razão do FromString()
 			mapUserFile.put(user.getEmail(),user);
 		}
 		return mapUserFile;
-
 	}
 
 }

@@ -47,19 +47,18 @@ public class User {
 	 * => "<email>+<nome>";
 	 */
 	public String toString() {
-		return email + "+" + nome;
+		return email + "-" + nome;
 	} 
 	
 	/*
 	 * Recebe uma String com o formato:
-	 * "Name: <nomeDaPessoa> Email: <emailDaPessoa>".
+	 * "<emailDaPessoa>-<nomeDaPessoa>".
 	 *  Ensures: Devolve um objecto User
 	 */
 	public User fromString(String s) {
-		email = s.split(" ")[3];
-		nome = s.split(" ")[1];
+		email = s.split("-")[0];
+		nome = s.split("-")[1];
 		User usuario = new User(nome,email);
-		
 		return usuario;
 	}
 	

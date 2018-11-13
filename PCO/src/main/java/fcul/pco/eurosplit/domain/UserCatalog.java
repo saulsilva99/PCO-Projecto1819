@@ -48,7 +48,14 @@ public class UserCatalog {
 	 * @param id. Eh uma String de email. Requires: id ser um email valido. Ensures:
 	 * Devolve o Objecto se o utilizador existe caso contrario levanta uma exceção
 	 */
-	public User getUserById(String id) throws NullPointerException {
+	public User getUserById(String id){
+		try{
+			if(!hasUserWithId(id)) {
+				StorageUsers.get(id).toString();//necessário colocar em toString();
+			}
+		}catch(NullPointerException e){
+			System.out.println("Não existe esse utilizador.");
+		}
 		return StorageUsers.get(id);
 	}
 
