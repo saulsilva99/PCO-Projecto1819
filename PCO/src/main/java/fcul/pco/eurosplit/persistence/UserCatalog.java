@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import fcul.pco.eurosplit.domain.User;
+import fcul.pco.eurosplit.main.ApplicationConfiguration;
 
 public class UserCatalog {
 	/*
@@ -17,8 +18,12 @@ public class UserCatalog {
 	 * com o formato:
 	 * -> "Name: nomeDaPessoa Email: emailDaPessoa"
 	 */
+	ApplicationConfiguration appConf = new ApplicationConfiguration();
+	 
+	
 	public static void save(Map<String, User> users) throws IOException {
-		FileWriter writeToFile = new FileWriter(new File("./users.dat"));
+		ApplicationConfiguration appConf = new ApplicationConfiguration();
+		FileWriter writeToFile = new FileWriter(new File(appConf.ROOT_DIRECTORY));
 		for (User u:  users.values()) {
 			writeToFile.write(u.toString() + "\n");
 		}
@@ -31,14 +36,14 @@ public class UserCatalog {
 	 * e value = User(nome,email)
 	 */
 	public static Map<String,User> load() throws FileNotFoundException {
-		
+		ApplicationConfiguration appConf = new ApplicationConfiguration();
 		Map<String,User> mapUserFile = new HashMap<String, User>();
-		Scanner inputFromFile = new Scanner(new File("./users.dat"));
+		Scanner inputFromFile = new Scanner(new File(appConf.ROOT_DIRECTORY));
 		while(inputFromFile.hasNextLine()) {
 			
 			String linha = inputFromFile.nextLine();
 			
-			//transformações para usar no Ojecto User
+			//transformações para usar no Objecto User
 			String nome = linha.split("-")[1];
 			String email = linha.split("-")[0];
 			User user = new User(nome,email);

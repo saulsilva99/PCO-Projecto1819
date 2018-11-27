@@ -1,6 +1,8 @@
 package fcul.pco.eurosplit.domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,14 +51,19 @@ public class UserCatalog {
 	 * Devolve o Objecto se o utilizador existe caso contrario levanta uma exceção
 	 */
 	public User getUserById(String id){
-		try{
 			if(!hasUserWithId(id)) {
 				StorageUsers.get(id).toString();//necessário colocar em toString();
-			}
-		}catch(NullPointerException e){
-			System.out.println("Não existe esse utilizador.");
-		}
-		return StorageUsers.get(id);
+				return StorageUsers.get(id);
+			}else {
+				return null;
+			}	
+	}
+	
+	public ArrayList<User> usersToArray() {
+		ArrayList<User> userDeArrays = new ArrayList<>();
+		userDeArrays.addAll(StorageUsers.values());
+		Collections.sort(userDeArrays);
+		return userDeArrays;
 	}
 
 	/*

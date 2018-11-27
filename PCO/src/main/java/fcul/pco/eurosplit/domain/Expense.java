@@ -3,6 +3,7 @@ package fcul.pco.eurosplit.domain;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+
 /*
  * Representacao de uma despesa 
  * @author Saul Silva e Joao Paiva
@@ -23,9 +24,8 @@ public class Expense {
 	 * Requires: Respeitar os valores dos params. User existir, assim como
 	 * data ser válida.
 	 */
-	public Expense(String d, int DValue,User paid,Date dt, ArrayList<User> paidfor){
+	public Expense(String d, User paid,Date dt, ArrayList<User> paidfor){
 		this.Despesa = d;
-		this.Despesavalor = DValue;
 		this.paidBy = paid;
 		this.date = dt;	
 		this.paidfor = new ArrayList<User>();
@@ -34,9 +34,8 @@ public class Expense {
 	/*
 	 * Proposito para testes. Poderá ter de ser apagada.
 	 */
-	public Expense(String d, int DValue,User paid,Date dt){
+	public Expense(String d,User paid,Date dt){
 		this.Despesa = d;
-		this.Despesavalor = DValue;
 		this.paidBy = paid;
 		this.date = dt;	
 	}
@@ -62,8 +61,7 @@ public class Expense {
 						 + paidBy.getEmail() + "-"  
 						 + date.toString();
 	}
-	
-	
+		
 	/*
 	 * Este metodo recebe uma String s com o seguinte formato:
 	 * A determinar
@@ -73,22 +71,16 @@ public class Expense {
 	 */
 	
 	public Expense fromString(String s) throws ParseException {
-		
 		//Valores para usar no objecto Expense
-		String Despesa	= s.split("-")[0];
-		String DespesaValor = s.split("-")[1];
+		String email = s.split("-")[0];
+		User user = fcul.pco.eurosplit.main.Start.getUserCatalog().getUserById(email);
 		
 		//Valores para a data
-		String dataString = s.split("-")[4];
+		String dataString = s.split("-")[4];// isto ainda não está correcto!
 		Date dtObjt = fcul.pco.eurosplit.domain.Date.now();
 		Date finalDate = dtObjt.fromString(dataString);
 		
-		//Criação da Instância User
-		String Username = s.split("-")[2];
-		String email = s.split("-")[3];
-		User user = new User(Username, email);
-
-		Expense exp = new Expense(Despesa,Integer.parseInt(DespesaValor),user, finalDate);
+		Expense exp = new Expense(Despesa, user, finalDate);
 		return exp;
 	}
 }

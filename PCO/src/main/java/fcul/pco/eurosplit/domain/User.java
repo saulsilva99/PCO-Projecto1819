@@ -5,7 +5,7 @@ package fcul.pco.eurosplit.domain;
  * pelo seu Nome e Email
  * @author Saul Silva e João Paiva
  */
-public class User {
+public class User implements Comparable<User> {
 	private String email;
 	private String nome;
 	
@@ -46,6 +46,7 @@ public class User {
 	 * Ensures: Devolve uma string com o formato
 	 * => "<email>+<nome>";
 	 */
+	@Override
 	public String toString() {
 		return email + "-" + nome;
 	} 
@@ -60,6 +61,15 @@ public class User {
 		nome = s.split("-")[1];
 		User usuario = new User(nome,email);
 		return usuario;
+	}
+
+	@Override
+	public int compareTo(User o) {
+		int value = email.compareTo(o.email);
+		if(value == 0) { // no caso de os emails serem iguais.
+			value = nome.compareTo(o.nome);
+		}
+		return value;
 	}
 	
 }
