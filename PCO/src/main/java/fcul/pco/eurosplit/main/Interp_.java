@@ -107,8 +107,8 @@ public class Interp_ {
     	
     }
 
-    private void quit() {
-       // save();
+    private void quit(){
+       save();
     }
 
     private void showUsers() {
@@ -120,7 +120,7 @@ public class Interp_ {
     		linhaTabela.add(u.getEmail());
     		tabela.add(linhaTabela);
     	}
-    	fcul.pco.eurosplit.domain.Table.tableToString(tabela);
+    	System.out.println(fcul.pco.eurosplit.domain.Table.tableToString(tabela));
     }
 
     private void login(Scanner input) {
@@ -141,19 +141,19 @@ public class Interp_ {
         // TODO
     }
 
-   /* private void save() {
+   private void save() {
         try {
             Start.getUserCatalog().save();
         } catch (IOException ex) {
             System.err.println("Error saving User Catalog.");
         }
-        try {
+        /*try {
             Start.getExpenseCatalog().save();
         } catch (IOException ex) {
             System.err.println("Error saving Expense Catalog.");
-        }
+        }*/
         // TODO
-    }*/
+    }
 
     private void makeNewExpense(Scanner input) {
         
@@ -196,6 +196,8 @@ public class Interp_ {
     			Start.getUserCatalog().getUserById(email);
     		}catch(NullPointerException e) {
     			currentUser = new User(nome,email);
+    			Start.getUserCatalog().addUser(currentUser); // obvio !!!!
+    			save();
     			System.out.print(nome+"> ");
     			String word = input.nextLine();
     			execute(word,input);

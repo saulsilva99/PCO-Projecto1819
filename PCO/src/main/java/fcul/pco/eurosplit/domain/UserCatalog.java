@@ -43,6 +43,18 @@ public class UserCatalog {
 		} else
 			return false;
 	}
+	
+	public boolean hasUserWithName(String name) {
+		boolean hasUser = false;
+		for (User u:  StorageUsers.values()) {
+			if(u.getName().equals(name)) {
+				hasUser = true;
+			}else {
+				hasUser = false;
+			}
+		}
+		return hasUser;
+	}
 
 	/*
 	 * Descobrir se existe um usuario com determinado email.
@@ -59,8 +71,12 @@ public class UserCatalog {
 			}	
 	}
 	
+	public User getUsersWithName(String name) {
+		return null; //<-- acabar	
+	}
+	
 	public ArrayList<User> usersToArray() {
-		ArrayList<User> userDeArrays = new ArrayList<>();
+		ArrayList<User> userDeArrays = new ArrayList<User>();
 		userDeArrays.addAll(StorageUsers.values());
 		Collections.sort(userDeArrays);
 		return userDeArrays;

@@ -18,7 +18,7 @@ public class UserCatalog {
 	 * com o formato:
 	 * -> "Name: nomeDaPessoa Email: emailDaPessoa"
 	 */
-	ApplicationConfiguration appConf = new ApplicationConfiguration();
+ 
 	 
 	
 	public static void save(Map<String, User> users) throws IOException {

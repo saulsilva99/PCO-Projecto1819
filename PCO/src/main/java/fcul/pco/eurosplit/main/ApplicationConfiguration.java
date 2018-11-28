@@ -15,5 +15,9 @@ public class ApplicationConfiguration {
     public static String EXPENSES_CATALOG_FILENAME = "expensesCatalog";
 
     static String DEFAULT_PROMPT = "EuroSplit";
+    
+    public static void fo() {
+    	
+    }
 
 }
