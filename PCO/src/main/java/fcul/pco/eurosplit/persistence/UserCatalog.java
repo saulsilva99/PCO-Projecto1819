@@ -19,11 +19,10 @@ public class UserCatalog {
 	 * -> "Name: nomeDaPessoa Email: emailDaPessoa"
 	 */
  
-	 
 	
 	public static void save(Map<String, User> users) throws IOException {
-		ApplicationConfiguration appConf = new ApplicationConfiguration();
-		FileWriter writeToFile = new FileWriter(new File(appConf.ROOT_DIRECTORY));
+		
+		FileWriter writeToFile = new FileWriter(new File(ApplicationConfiguration.ROOT_DIRECTORY));
 		for (User u:  users.values()) {
 			writeToFile.write(u.toString() + "\n");
 		}
@@ -36,9 +35,8 @@ public class UserCatalog {
 	 * e value = User(nome,email)
 	 */
 	public static Map<String,User> load() throws FileNotFoundException {
-		ApplicationConfiguration appConf = new ApplicationConfiguration();
 		Map<String,User> mapUserFile = new HashMap<String, User>();
-		Scanner inputFromFile = new Scanner(new File(appConf.ROOT_DIRECTORY));
+		Scanner inputFromFile = new Scanner(new File(ApplicationConfiguration.ROOT_DIRECTORY));
 		while(inputFromFile.hasNextLine()) {
 			
 			String linha = inputFromFile.nextLine();

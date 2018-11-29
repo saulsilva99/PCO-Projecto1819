@@ -2,6 +2,7 @@ package fcul.pco.eurosplit.main;
 
 import fcul.pco.eurosplit.domain.*;
 import fcul.pco.eurosplit.main.Interp_;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -13,7 +14,7 @@ public class Start {
 	private static Interp_ interp;
 
 	public static void main(String[] args) throws ParseException, IOException {
-
+		
 		run();
 	}
 

@@ -9,8 +9,9 @@ import java.util.ArrayList;
  * @author Saul Silva e Joao Paiva
  */
 public class Expense {
-	private String Despesa; 
-	private int Despesavalor;
+	private static int contador;
+	private int id; 
+	private int despesavalor;
 	private User paidBy;
 	private Date date; 
 	private ArrayList<User> paidfor;
@@ -24,20 +25,20 @@ public class Expense {
 	 * Requires: Respeitar os valores dos params. User existir, assim como
 	 * data ser válida.
 	 */
-	public Expense(String d, User paid,Date dt, ArrayList<User> paidfor){
-		this.Despesa = d;
-		this.paidBy = paid;
+	public Expense(User paidUser,Date dt, ArrayList<User> paidfor){
+		this.id = contador;
+		this.paidBy = paidUser;
 		this.date = dt;	
 		this.paidfor = new ArrayList<User>();
+		this.contador++;
 	}
 	
+	
 	/*
-	 * Proposito para testes. Poderá ter de ser apagada.
+	 * Devolve o Id de uma despesa.
 	 */
-	public Expense(String d,User paid,Date dt){
-		this.Despesa = d;
-		this.paidBy = paid;
-		this.date = dt;	
+	public int getDespesaId() {
+		return id;
 	}
 	
 	/*
@@ -49,6 +50,7 @@ public class Expense {
 		paidfor.add(u);
 	}
 	
+	
 	/*
 	 * Converter o Objecto Expense para String.
 	 * Com o seguinte formato:
@@ -56,12 +58,13 @@ public class Expense {
 	 * Ensures: Devolve uma String com o formato em cima.
 	 */
 	public String toString() {
-		return Despesa + "-" + Despesavalor+ "-" 
+		return id + "-" + despesavalor+ "-" 
 						 + paidBy.getName() + "-"
 						 + paidBy.getEmail() + "-"  
 						 + date.toString();
 	}
-		
+	
+	
 	/*
 	 * Este metodo recebe uma String s com o seguinte formato:
 	 * A determinar
@@ -69,7 +72,6 @@ public class Expense {
 	 * Requires: String s estar com o formato x.
 	 * Ensures: Devolve um objecto da propria class Expense.
 	 */
-	
 	public Expense fromString(String s) throws ParseException {
 		//Valores para usar no objecto Expense
 		String email = s.split("-")[0];
@@ -80,7 +82,7 @@ public class Expense {
 		Date dtObjt = fcul.pco.eurosplit.domain.Date.now();
 		Date finalDate = dtObjt.fromString(dataString);
 		
-		Expense exp = new Expense(Despesa, user, finalDate);
+		Expense exp = new Expense(user, finalDate,paidfor); //mal
 		return exp;
 	}
 }

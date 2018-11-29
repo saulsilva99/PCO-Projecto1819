@@ -65,9 +65,9 @@ public class User implements Comparable<User> {
 
 	@Override
 	public int compareTo(User o) {
-		int value = email.compareTo(o.email);
+		int value = nome.compareTo(o.nome);
 		if(value == 0) { // no caso de os emails serem iguais.
-			value = nome.compareTo(o.nome);
+			value = email.compareTo(o.email);
 		}
 		return value;
 	}

@@ -76,10 +76,10 @@ public class UserCatalog {
 	}
 	
 	public ArrayList<User> usersToArray() {
-		ArrayList<User> userDeArrays = new ArrayList<User>();
-		userDeArrays.addAll(StorageUsers.values());
-		Collections.sort(userDeArrays);
-		return userDeArrays;
+		ArrayList<User> l = new ArrayList<User>();
+		l.addAll(StorageUsers.values());
+		Collections.sort(l);
+		return l;
 	}
 
 	/*
