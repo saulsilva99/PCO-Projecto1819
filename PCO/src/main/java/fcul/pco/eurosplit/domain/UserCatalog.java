@@ -44,17 +44,6 @@ public class UserCatalog {
 			return false;
 	}
 	
-	public boolean hasUserWithName(String name) {
-		boolean hasUser = false;
-		for (User u:  StorageUsers.values()) {
-			if(u.getName().equals(name)) {
-				hasUser = true;
-			}else {
-				hasUser = false;
-			}
-		}
-		return hasUser;
-	}
 
 	/*
 	 * Descobrir se existe um usuario com determinado email.
@@ -68,7 +57,10 @@ public class UserCatalog {
 				return StorageUsers.get(id);
 			}else {
 				return null;
-			}	
+			}
+			/*if(!hasUserWithId(id)) {
+				return null;
+			}*/
 	}
 	
 	public User getUsersWithName(String name) {

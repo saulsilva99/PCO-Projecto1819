@@ -29,6 +29,10 @@ public class Start {
 			interp.execute(command, input);
 		} while (!command.equals("quit"));
 	}
+	
+	public static ExpenseCatalog getExpenseCatalog() {
+		return expenseCatalog;
+	}
 
 	public static UserCatalog getUserCatalog() {
 		return userCatalog;

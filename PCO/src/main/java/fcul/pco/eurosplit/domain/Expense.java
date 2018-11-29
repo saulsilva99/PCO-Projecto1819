@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 
-/*
+/**
  * Representacao de uma despesa 
  * @author Saul Silva e Joao Paiva
  */
@@ -14,9 +14,10 @@ public class Expense {
 	private int despesavalor;
 	private User paidBy;
 	private Date date; 
+	private String description;
 	private ArrayList<User> paidfor;
 	
-	/*
+	/**
 	 * @param d. Eh uma string com o nome da despesa ?
 	 * @param DValue. Valor da Despesa em inteiro.
 	 * @param paidBy. Instancia do usuario que pagou a despesa
@@ -25,23 +26,23 @@ public class Expense {
 	 * Requires: Respeitar os valores dos params. User existir, assim como
 	 * data ser válida.
 	 */
-	public Expense(User paidUser,Date dt, ArrayList<User> paidfor){
+	public Expense(String description, Date d, int value, User paidBy) {
+		this.description = description;
 		this.id = contador;
-		this.paidBy = paidUser;
-		this.date = dt;	
+		this.paidBy = paidBy;
+		this.date = d;	
 		this.paidfor = new ArrayList<User>();
-		this.contador++;
+		contador++;
 	}
 	
-	
-	/*
+	/**
 	 * Devolve o Id de uma despesa.
 	 */
 	public int getDespesaId() {
 		return id;
 	}
 	
-	/*
+	/**
 	 * Adicionar um usuario a um arraylist<user>.
 	 * @param u. Ser uma Instancia de User(nome,email).
 	 * Requires: Uma instancia de User e usuário existir.
@@ -51,7 +52,7 @@ public class Expense {
 	}
 	
 	
-	/*
+	/**
 	 * Converter o Objecto Expense para String.
 	 * Com o seguinte formato:
 	 * => "<Despesa>-<Despesavalor>-<paidBy.getName()>-<paidBy.getEmail()>-<Date><date.toString()>";
@@ -65,7 +66,7 @@ public class Expense {
 	}
 	
 	
-	/*
+	/**
 	 * Este metodo recebe uma String s com o seguinte formato:
 	 * A determinar
 	 * @param s. Ser uma String que separa os valores por "-".
@@ -76,13 +77,15 @@ public class Expense {
 		//Valores para usar no objecto Expense
 		String email = s.split("-")[0];
 		User user = fcul.pco.eurosplit.main.Start.getUserCatalog().getUserById(email);
+		String description = "asdasdsa"; //<-- mal
 		
 		//Valores para a data
 		String dataString = s.split("-")[4];// isto ainda não está correcto!
 		Date dtObjt = fcul.pco.eurosplit.domain.Date.now();
 		Date finalDate = dtObjt.fromString(dataString);
 		
-		Expense exp = new Expense(user, finalDate,paidfor); //mal
+		//String description, Date d, int value, User paidBy
+		Expense exp = new Expense(description, finalDate, 1213,user); //mal
 		return exp;
 	}
 }

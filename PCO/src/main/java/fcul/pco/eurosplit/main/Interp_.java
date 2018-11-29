@@ -194,11 +194,13 @@ public class Interp_ {
     		String nome = name.split("-")[1];
     		try {
     			Start.getUserCatalog().getUserById(email);
+    			System.out.println("A user with this email address already exists.");
     		}catch(NullPointerException e) {
     			currentUser = new User(nome,email);
     			Start.getUserCatalog().addUser(currentUser); // obvio !!!!
     			save();
-    			System.out.print(nome+"> ");
+    			prompt = nome;
+    			System.out.print(prompt+"> ");
     			String word = input.nextLine();
     			execute(word,input);
     		}
@@ -216,6 +218,7 @@ public class Interp_ {
      * @param name
      * @return
      */
+    
     private User selectOrCreateUser(Scanner input, String name) {
         ArrayList<User> list = null; // Start.getUserCatalog().getUsersWithName(name);
         if (list.isEmpty()) {
