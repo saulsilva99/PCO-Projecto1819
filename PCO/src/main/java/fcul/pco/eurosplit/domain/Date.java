@@ -49,7 +49,7 @@ public class Date {
 	 * "year-mes-dias-horas-minutos"
 	 */
 	public String toString() {
-		return year + "-" + mes + "-" + dia + "-" + horas + "-" + minutos;
+		return year + "/" + mes + "/" + dia + "/" + horas + ":" + minutos;
 	}
 	
 	/*
@@ -57,7 +57,7 @@ public class Date {
 	 * com o formato igual ao metodo toString()
 	 * 
 	 * requires: s tem de ser uma String em formato
-	 * "year-mes-horas-minutos"
+	 * "year/mes/day/horas:minutos"
 	 * Ensures: Devolve um objecto em forma de data
 	 */
 	public Date fromString(String s) {
@@ -65,8 +65,8 @@ public class Date {
 		int year = Integer.parseInt(s.split("-")[0]);
 		int month = Integer.parseInt(s.split("-")[1]);
 		int day = Integer.parseInt(s.split("-")[2]);
-		int hours = Integer.parseInt(s.split("-")[3]);
-		int minuts = Integer.parseInt(s.split("-")[4]);
+		int hours = Integer.parseInt(s.split("-")[3].split(":")[0]);
+		int minuts = Integer.parseInt(s.split("-")[3].split(":")[1]);
 		
 		Date dt = new Date(year,month,day,hours,minuts);
 		return dt;

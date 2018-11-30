@@ -11,22 +11,40 @@ import java.util.ArrayList;
 public class Expense {
 	private static int contador;
 	private int id; 
-	private int despesavalor;
+	private double despesavalor;
 	private User paidBy;
 	private Date date; 
 	private String description;
 	private ArrayList<User> paidfor;
 	
 	/**
-	 * @param d. Eh uma string com o nome da despesa ?
-	 * @param DValue. Valor da Despesa em inteiro.
+	 * @param description. Eh uma string de descricao da despesa
 	 * @param paidBy. Instancia do usuario que pagou a despesa
-	 * @param dt. Instancia de Data do usuario que pagou.
-	 * @param paidfor. ArrayList de Usuario.
+	 * @param d. Instancia de Data do usuario que pagou.
+	 * @param paidBy. Instancia de Usuario
 	 * Requires: Respeitar os valores dos params. User existir, assim como
 	 * data ser válida.
 	 */
-	public Expense(String description, Date d, int value, User paidBy) {
+	public Expense(String description, double despesavalor, User paidBy,Date d) {
+		this.description = description;
+		this.despesavalor = despesavalor;
+		this.id = contador;
+		this.paidBy = paidBy;
+		this.date = d;	
+		this.paidfor = new ArrayList<User>();
+		contador++;
+	}
+	
+	/**
+	 * @param id. numero unico da despesa e inteiro
+	 * @param description. Eh uma string de descricao da despesa
+	 * @param paidBy. Instancia do usuario que pagou a despesa
+	 * @param d. Instancia de Data do usuario que pagou.
+	 * @param paidBy. Instancia de Usuario
+	 * Requires: Respeitar os valores dos params. User existir, assim como
+	 * data ser válida.
+	 */
+	private Expense(int id, String description, double despesavalor, User paidBy,Date d) {
 		this.description = description;
 		this.id = contador;
 		this.paidBy = paidBy;
@@ -36,7 +54,7 @@ public class Expense {
 	}
 	
 	/**
-	 * Devolve o Id de uma despesa.
+	 * Devolve um inteiro e valor unico do id de uma despesa.
 	 */
 	public int getDespesaId() {
 		return id;
@@ -51,41 +69,81 @@ public class Expense {
 		paidfor.add(u);
 	}
 	
+	/**
+	 * Devolve uma string que eh a descricao da instancia 
+	 * Expense.
+	 */
+	public String getDescription() {
+		return description;
+	}
 	
 	/**
-	 * Converter o Objecto Expense para String.
-	 * Com o seguinte formato:
-	 * => "<Despesa>-<Despesavalor>-<paidBy.getName()>-<paidBy.getEmail()>-<Date><date.toString()>";
-	 * Ensures: Devolve uma String com o formato em cima.
+	 * Devolve uma Data da instancia Expense.
 	 */
-	public String toString() {
-		return id + "-" + despesavalor+ "-" 
-						 + paidBy.getName() + "-"
-						 + paidBy.getEmail() + "-"  
-						 + date.toString();
+	public Date getDate() {
+		return date;
+	}
+	
+	/**
+	 * Devolve um usuario que pagou a despesa 
+	 * da instancia Expense.
+	 */
+	public User getUserPaidBy() {
+		return paidBy;
+	}
+	
+	/**
+	 * Devolve um o valor da despesa pagou a despesa 
+	 * da instancia Expense.
+	 */
+	public double getDespesaValor() {
+		return despesavalor;
 	}
 	
 	
 	/**
-	 * Este metodo recebe uma String s com o seguinte formato:
-	 * A determinar
-	 * @param s. Ser uma String que separa os valores por "-".
-	 * Requires: String s estar com o formato x.
+	 * Converter o Objecto Expense para String.
+	 * Com o seguinte formato:
+	 * => "";
+	 * Ensures: Devolve uma String com o formato em cima.
+	 */
+	@Override
+	public String toString() {
+		return getDescription()+ "-" 
+			   + getDate()+ "-"
+			   + getDespesaValor() + "-"
+			   + paidBy.getEmail() + "-" 
+		       + date.toString();
+
+	}
+	
+	
+	/**
+	 * Objectivo será devolve uma instancia Expense derivada de
+	 * uma String. Este metodo verá primeiro para o qual terá de 
+	 * criado o tipo de constructor.
+	 * @param s. Ser uma String que vai ser separa os valores por "-".
+	 * Requires: String s estar separada preparada conforme o metodo
+	 * toString(). O split por <"-"> da String só deve ter valores 
+	 * entre 4 ou 5.
 	 * Ensures: Devolve um objecto da propria class Expense.
 	 */
 	public Expense fromString(String s) throws ParseException {
-		//Valores para usar no objecto Expense
-		String email = s.split("-")[0];
-		User user = fcul.pco.eurosplit.main.Start.getUserCatalog().getUserById(email);
-		String description = "asdasdsa"; //<-- mal
+		String[] tamanhoString = s.split("-");
 		
-		//Valores para a data
-		String dataString = s.split("-")[4];// isto ainda não está correcto!
-		Date dtObjt = fcul.pco.eurosplit.domain.Date.now();
-		Date finalDate = dtObjt.fromString(dataString);
-		
-		//String description, Date d, int value, User paidBy
-		Expense exp = new Expense(description, finalDate, 1213,user); //mal
-		return exp;
+		if(!(tamanhoString.length == 4)) {
+			int id = Integer.parseInt(tamanhoString[0]);
+			String description = tamanhoString[1];
+			double despesaV = Double.parseDouble(tamanhoString[2]);
+			User user = fcul.pco.eurosplit.main.Start.getUserCatalog().getUserById(paidBy.getEmail());
+			Date data = date.fromString(tamanhoString[4]);
+			return new Expense(id,description,despesaV,user,data);
+		}
+		String description = tamanhoString[0];
+		double despesaV = Double.parseDouble(tamanhoString[1]);
+		User user = fcul.pco.eurosplit.main.Start.getUserCatalog().getUserById(paidBy.getEmail());
+		Date data = date.fromString(tamanhoString[3]);
+		return new Expense(description,despesaV,user,data);
+
 	}
 }
