@@ -43,7 +43,6 @@ public class UserCatalog {
 		} else
 			return false;
 	}
-	
 
 	/*
 	 * Descobrir se existe um usuario com determinado email.
@@ -51,22 +50,38 @@ public class UserCatalog {
 	 * @param id. Eh uma String de email. Requires: id ser um email valido. Ensures:
 	 * Devolve o Objecto se o utilizador existe caso contrario levanta uma exceção
 	 */
-	public User getUserById(String id){
-			if(!hasUserWithId(id)) {
-				StorageUsers.get(id).toString();//necessário colocar em toString();
-				return StorageUsers.get(id);
-			}else {
+	public User getUserById(String id) {
+		if (hasUserWithId(id)) {
+			StorageUsers.get(id).toString();// necessário colocar em toString();
+			return StorageUsers.get(id);
+		} else {
+			return null;
+		}
+	}
+	public User checkUserExistsById(String id) {
+		if (!hasUserWithId(id)) {
+			StorageUsers.get(id).toString();// necessário colocar em toString();
+			System.out.println("sou  " +StorageUsers.get(id));
+			return StorageUsers.get(id);
+		} else {
+			return null;
+		}
+	}
+
+	public User getUserWithName(String name) {
+		User user = null;
+		for (User u : StorageUsers.values()) {
+			if (u.getName().equals(name)) {
+				user = u;
+			} else {
 				return null;
 			}
-			/*if(!hasUserWithId(id)) {
-				return null;
-			}*/
+		}
+		return user;
 	}
 	
-	public User getUsersWithName(String name) {
-		return null; //<-- acabar	
-	}
 	
+
 	public ArrayList<User> usersToArray() {
 		ArrayList<User> l = new ArrayList<User>();
 		l.addAll(StorageUsers.values());

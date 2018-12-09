@@ -6,15 +6,16 @@ import fcul.pco.eurosplit.main.Interp_;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Start {
 	private static UserCatalog userCatalog;
 	private static ExpenseCatalog expenseCatalog;
+	private static SplitCatalog splitCatalog; // prof nao falou de isto
 	private static Interp_ interp;
 
 	public static void main(String[] args) throws ParseException, IOException {
-		
 		run();
 	}
 
@@ -37,11 +38,17 @@ public class Start {
 	public static UserCatalog getUserCatalog() {
 		return userCatalog;
 	}
+	
+	public static SplitCatalog getSplitCatalog() {
+		return splitCatalog;
+	}
 
 	public static void initialize() throws IOException {
 		userCatalog = new UserCatalog();
+		splitCatalog = splitCatalog.getInstance();
 		try {
 			userCatalog.load(); // vai buscar o que tenho escrito no ficheiro
+			//splitCatalog.load();
 		} catch (IOException i) {
 			System.out.println("Ficheiro não foi encontrado, ups.");
 		}

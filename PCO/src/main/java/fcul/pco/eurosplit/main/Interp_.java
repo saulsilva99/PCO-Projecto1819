@@ -1,7 +1,7 @@
 package fcul.pco.eurosplit.main;
 
 import fcul.pco.eurosplit.domain.Expense;
-//import fcul.pco.eurosplit.domain.Split;
+import fcul.pco.eurosplit.domain.Split;
 import fcul.pco.eurosplit.domain.User;
 import fcul.pco.eurosplit.domain.UserCatalog;
 import fcul.pco.eurosplit.domain.Date;
@@ -34,7 +34,7 @@ public class Interp_ {
     /**
      * Contains the current Split
      */
-    // private Split currentSplit;
+    private Split currentSplit;
     /**
      *
      * @param input
@@ -126,11 +126,35 @@ public class Interp_ {
     private void login(Scanner input) {
         System.out.print("Username: ");
         String username = input.nextLine();
-        // TODO 
+        try {
+        	Start.getUserCatalog().getUserWithName(username);
+        }catch(NullPointerException e) {
+        	System.out.println("User not found.");
+        	System.out.print(prompt+"> ");
+			String word = input.nextLine();
+			execute(word,input);
+        }
+        System.out.print("Emaill: ");
+        String email = input.nextLine();
+        try {
+        	currentUser = Start.getUserCatalog().getUserById(email);
+        }catch(NullPointerException e) {
+        	System.out.println("Email not found.");
+        }
+        setPrompt();
     }
 
     private void makeNewSplit(Scanner input) {
-        // TODO
+    	if(!(currentUser == null)) {
+    		currentSplit = new Split(currentUser);
+        	System.out.println("For what event is this split ? (i.e. «trip to Madrid», «house expenses», etc...");
+    		String multipleText = input.nextLine();
+    		currentSplit.setEvent(multipleText);
+    		Start.getSplitCatalog().addSplit(currentSplit);
+    		System.out.println(Start.getSplitCatalog().getSplits().toString());
+    		save();
+    	}
+    	setPrompt();
     }
 
     private void selectSplit(Scanner input) {
@@ -152,7 +176,11 @@ public class Interp_ {
         } catch (IOException ex) {
             System.err.println("Error saving Expense Catalog.");
         }*/
-        // TODO
+        try {
+            Start.getSplitCatalog().save();
+        } catch (IOException ex) {
+            System.err.println("Error saving Split Catalog.");
+        }
     }
 
     private void makeNewExpense(Scanner input) {
@@ -167,14 +195,13 @@ public class Interp_ {
         if (currentUser == null) {
             this.prompt = ApplicationConfiguration.DEFAULT_PROMPT;
         }
-        /* remove this comment for the 4th serie of tasks.
+        
         else if (currentSplit == null) {
             this.prompt = currentUser.getName();
         }
         else {
             this.prompt = currentUser.getName() + "." + currentSplit.getPurpose();
         }
-         */
     }
 
     String nextToken() {
@@ -193,11 +220,11 @@ public class Interp_ {
     		String email = name.split("-")[0];
     		String nome = name.split("-")[1];
     		try {
-    			Start.getUserCatalog().getUserById(email);
+    			Start.getUserCatalog().checkUserExistsById(email);
     			System.out.println("A user with this email address already exists.");
     		}catch(NullPointerException e) {
     			currentUser = new User(nome,email);
-    			Start.getUserCatalog().addUser(currentUser); // obvio !!!!
+    			Start.getUserCatalog().addUser(currentUser);
     			save();
     			prompt = nome;
     			System.out.print(prompt+"> ");

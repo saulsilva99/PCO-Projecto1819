@@ -32,7 +32,9 @@ public class ExpenseCatalog {
 		//StorageExpenses.put(u.getEmail(), u);  < -- terminar 
 	}
 	
-	
+	public Expense getExpenseById(int id) {
+		return StorageExpenses.get(id);
+	}
 	
 	/*
 	 * Chama a camada de Persistência que também tem o ExpenseCatalog e o método load
@@ -48,6 +50,4 @@ public class ExpenseCatalog {
 	public void save() throws IOException {
 		fcul.pco.eurosplit.persistence.ExpenseCatalog.save(StorageExpenses);
 	}
-	
-	
 }
