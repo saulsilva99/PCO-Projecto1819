@@ -49,7 +49,7 @@ public class Date {
 	 * "year-mes-dias-horas-minutos"
 	 */
 	public String toString() {
-		return year + "/" + mes + "/" + dia + "/" + horas + ":" + minutos;
+		return year + "/" + mes + "/" + dia + "/" + horas + "/" + minutos;
 	}
 	
 	/*
@@ -62,13 +62,14 @@ public class Date {
 	 */
 	public Date fromString(String s) {
 		
-		int year = Integer.parseInt(s.split("-")[0]);
-		int month = Integer.parseInt(s.split("-")[1]);
-		int day = Integer.parseInt(s.split("-")[2]);
-		int hours = Integer.parseInt(s.split("-")[3].split(":")[0]);
-		int minuts = Integer.parseInt(s.split("-")[3].split(":")[1]);
+		int year = Integer.parseInt(s.split("/")[0]);
+		int month = Integer.parseInt(s.split("/")[1]);
+		int day = Integer.parseInt(s.split("/")[2]);
+		int hours = Integer.parseInt(s.split("/")[3].split(":")[0]);
+		int minuts = Integer.parseInt(s.split("/")[3].split(":")[1]);
 		
 		Date dt = new Date(year,month,day,hours,minuts);
+		System.out.println("sou o date "+ dt.toString());
 		return dt;
 	}
 	

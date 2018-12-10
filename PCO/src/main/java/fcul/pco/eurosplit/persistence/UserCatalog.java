@@ -45,7 +45,6 @@ public class UserCatalog {
 			String nome = linha.split("-")[1];
 			String email = linha.split("-")[0];
 			User user = new User(nome,email);
-
 			user.fromString(user.toString()); // Ai está a razão do FromString()
 			mapUserFile.put(user.getEmail(),user);
 		}

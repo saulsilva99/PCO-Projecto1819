@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -68,7 +69,7 @@ public class UserCatalog {
 		}
 	}
 
-	public User getUserWithName(String name) {
+	public User getUserWithNameSingle(String name) {
 		User user = null;
 		for (User u : StorageUsers.values()) {
 			if (u.getName().equals(name)) {
@@ -78,6 +79,16 @@ public class UserCatalog {
 			}
 		}
 		return user;
+	}
+	public ArrayList<User> getUsersWithName(String name){
+		ArrayList<User> userList = new ArrayList<User>();
+		for(User u: StorageUsers.values()) {
+			if(u.getName().equals(name)) {
+				userList.add(u);
+			}
+		}
+		return userList;
+		
 	}
 	
 	

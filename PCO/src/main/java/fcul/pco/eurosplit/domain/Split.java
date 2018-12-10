@@ -3,6 +3,7 @@ package fcul.pco.eurosplit.domain;
 import java.util.ArrayList;
 
 public class Split {
+	private static int contador = 0;
 	private User owner;
 	private int id;
 	private String event;
@@ -11,12 +12,19 @@ public class Split {
 	public Split(User owner) {
 		this.owner= owner;
 		expenses = new ArrayList<>();
+		this.id=contador;
+		contador++;
+		
 	}
-	public Split(User owner, int id, String evento) {
+	public Split(User owner,int id,String evento) {
 		this.owner= owner;
-		this.id=id;
 		this.event=evento;
+		this.id=contador;
 		expenses = new ArrayList<>();
+		contador++;
+	}
+	public int getId() {
+		return id;
 	}
 	
 	public void setEvent(String event) {
@@ -34,7 +42,7 @@ public class Split {
 
 	@Override
 	public String toString() {
-		return id + "-" + owner.getEmail() + "-" + event + "-" + id + ":" + expenses.size();
+		return id + "-" + owner.getEmail() + "-" + event + "-" + id + ":" +expenses.size();
 	}
 	
 	public Split fromString(String s) {
@@ -47,6 +55,5 @@ public class Split {
 		String totalSplit = id+"-"+email+"-"+"-"+"-"+event+"-"+id+":"+size;
 
 		return null;
-	}	
-	
+	}		
 }

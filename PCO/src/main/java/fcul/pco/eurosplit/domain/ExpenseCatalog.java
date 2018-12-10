@@ -11,7 +11,8 @@ import java.util.Map;
  */
 public class ExpenseCatalog {
 	private Map<Integer, Expense> StorageExpenses;
-	
+	private int id;
+	private static int contador = 0;
 	/*
 	 * Inicializa um constructor com a Instancia StorageExpenses vazia.
 	 * Integer  == id da despesa
@@ -19,6 +20,8 @@ public class ExpenseCatalog {
 	 */
 	public ExpenseCatalog() {
 		StorageExpenses = new HashMap<Integer, Expense>();
+		id = contador;
+		contador++;
 	}
 	
 	
@@ -29,7 +32,7 @@ public class ExpenseCatalog {
 	 * User(nome,email)
 	 */
 	public void addExpense(Expense e) {
-		//StorageExpenses.put(u.getEmail(), u);  < -- terminar 
+		StorageExpenses.put(id, e);
 	}
 	
 	public Expense getExpenseById(int id) {

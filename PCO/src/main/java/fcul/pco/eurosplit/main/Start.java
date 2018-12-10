@@ -20,7 +20,7 @@ public class Start {
 	}
 
 	private static void run() throws IOException {
-		//deleteCatalogs(); <-- apagado para test
+		// deleteCatalogs(); <-- apagado para test
 		Scanner input = new Scanner(System.in);
 		initialize();
 		interp = new Interp_(input);
@@ -30,7 +30,7 @@ public class Start {
 			interp.execute(command, input);
 		} while (!command.equals("quit"));
 	}
-	
+
 	public static ExpenseCatalog getExpenseCatalog() {
 		return expenseCatalog;
 	}
@@ -38,7 +38,7 @@ public class Start {
 	public static UserCatalog getUserCatalog() {
 		return userCatalog;
 	}
-	
+
 	public static SplitCatalog getSplitCatalog() {
 		return splitCatalog;
 	}
@@ -46,12 +46,22 @@ public class Start {
 	public static void initialize() throws IOException {
 		userCatalog = new UserCatalog();
 		splitCatalog = splitCatalog.getInstance();
+		expenseCatalog = new ExpenseCatalog();
 		try {
 			userCatalog.load(); // vai buscar o que tenho escrito no ficheiro
-			//splitCatalog.load();
 		} catch (IOException i) {
 			System.out.println("Ficheiro não foi encontrado, ups.");
 		}
-	}
+		try {
+			splitCatalog.load();// vai buscar o que tenho escrito no ficheiro
+		} catch (IOException i) {
+			System.out.println("Ficheiro não foi encontrado, ups.");
+		}
+		try {
+			expenseCatalog.load();
+		}catch (IOException i) {
+			System.out.println("Ficheiro não foi encontrado, ups.");
+		}
 
+	}
 }

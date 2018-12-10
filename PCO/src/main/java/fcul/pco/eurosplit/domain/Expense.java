@@ -35,6 +35,15 @@ public class Expense {
 		contador++;
 	}
 	
+	public Expense(String description, double despesavalor, Date d) {
+		this.description = description;
+		this.despesavalor = despesavalor;
+		this.id = contador;
+		this.date = d;	
+		this.paidfor = new ArrayList<User>();
+		contador++;
+	}
+	
 	/**
 	 * @param id. numero unico da despesa e inteiro
 	 * @param description. Eh uma string de descricao da despesa
@@ -109,14 +118,12 @@ public class Expense {
 	 */
 	@Override
 	public String toString() {
-		return getDescription()+ "-" 
-			   + getDate()+ "-"
+		return id + "-" + getDescription()+ "-"
 			   + getDespesaValor() + "-"
 			   + paidBy.getEmail() + "-" 
 		       + date.toString();
 
 	}
-	
 	
 	/**
 	 * Objectivo será devolve uma instancia Expense derivada de

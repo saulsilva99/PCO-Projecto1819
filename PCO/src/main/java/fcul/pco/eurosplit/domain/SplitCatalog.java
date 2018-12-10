@@ -9,30 +9,51 @@ import java.util.Objects;
 
 public class SplitCatalog {
 	private Map<User, List<Split>> StorageSplits;
-	private List<Split> listSplit;
 	public static SplitCatalog instance;
 
 	private SplitCatalog() {
 		StorageSplits = new HashMap<User, List<Split>>();
-		listSplit = new ArrayList<Split>();
 	}
 
-	public ArrayList<Split> getUserSplits(User currentUser) {
+	public ArrayList<Split> getUserSplits(User currentUser)  {
+		System.out.println("cuurnte "+ StorageSplits);
 		ArrayList<Split> arraySplit = new ArrayList<Split>();
 		List<Split> ListaDoUser = StorageSplits.get(currentUser);
-		for (Split sp : ListaDoUser) {
-			arraySplit.add(sp);
+		System.out.println("ListaDoUser "+ ListaDoUser);
+		if(ListaDoUser != null) {
+			for (Split sp : ListaDoUser) {
+				arraySplit.add(sp);
+			}
 		}
-
 		return arraySplit;
 	}
 	public Map<User, List<Split>> getSplits() {
 		return StorageSplits;
 	}
 
-	public void addSplit(Split sp) {
-		listSplit.add(sp);
-		StorageSplits.put(sp.getOwner(), listSplit);
+	public void addAnotherUserSplit(User u, Split sp) {
+		ArrayList<Split> splitsFromUser = new ArrayList<>();
+		if(getUserSplits(u) != null) {
+			splitsFromUser = getUserSplits(u);
+		}else {
+			splitsFromUser = new ArrayList<Split>();
+		}
+		splitsFromUser.add(sp);
+		StorageSplits.put(sp.getOwner(), splitsFromUser);
+		System.out.println("sss "+StorageSplits);
+	}
+	public Split getSplitUserById(User u, int id) {
+		List<Split> splitsUser = StorageSplits.get(u);
+		Split splituser = null;
+		for(Split s: splitsUser) {
+			if(id == s.getId()) {
+				splituser = s;
+			}
+		}
+		if(splituser ==null) {
+			System.out.println("There is no number associated with that event");
+		}
+		return splituser;
 	}
 
 	public static SplitCatalog getInstance() {
