@@ -2,15 +2,17 @@ package fcul.pco.eurosplit.domain;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * @author: Saul Silva e Joao Paiva
+ */
 public class Date {
 	private int year;
 	private int mes;
 	private int dia;
-	private int horas;
+	private int horas; 
 	private int minutos;
 	
-	/*
+	/**
 	 * Cria uma instancia de Date para usar como 
 	 * Data.
 	 * @param y. Eh um ano > 0 e inteiro
@@ -21,12 +23,12 @@ public class Date {
 	 */
 	public Date(int y, int m,int d, int h, int min) {
 		this.year=m;
-		this.mes=m;
+		this.mes=m; 
 		this.dia=d;
 		this.horas=h;
 		this.minutos=min;
 	}
-	/*
+	/**
 	 * Eh criado um objecto com o valor deste formato:
 	 * "2018-11-10T12:02:35.876" para saber o valor atual da 
 	 * data ao qual foi criado.
@@ -44,7 +46,7 @@ public class Date {
 		return dt;
 	}
 	
-	/*
+	/**
 	 * Converte uma Data em String da forma:
 	 * "year-mes-dias-horas-minutos"
 	 */
@@ -52,7 +54,7 @@ public class Date {
 		return year + "/" + mes + "/" + dia + "/" + horas + "/" + minutos;
 	}
 	
-	/*
+	/**
 	 * Recebe uma String s que eh uma Data
 	 * com o formato igual ao metodo toString()
 	 * 
@@ -61,7 +63,6 @@ public class Date {
 	 * Ensures: Devolve um objecto em forma de data
 	 */
 	public Date fromString(String s) {
-		
 		int year = Integer.parseInt(s.split("/")[0]);
 		int month = Integer.parseInt(s.split("/")[1]);
 		int day = Integer.parseInt(s.split("/")[2]);
@@ -69,7 +70,6 @@ public class Date {
 		int minuts = Integer.parseInt(s.split("/")[3].split(":")[1]);
 		
 		Date dt = new Date(year,month,day,hours,minuts);
-		System.out.println("sou o date "+ dt.toString());
 		return dt;
 	}
 	

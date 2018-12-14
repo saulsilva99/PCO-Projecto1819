@@ -13,9 +13,9 @@ public class Table {
         for (int j = 0; j < columnsWidth.length; j++) {
             int max = 0;
             for (List<String> row : table) {
-                int w = row.get(j).length();
+                int w = row.get(j).length(); 
                 if (w > max) {
-                    max = w;
+                    max = w; 
                 }
             }
             columnsWidth[j] = max;
